@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kartex — Corrida de Karts 2P</title>
+<link rel="stylesheet" href="style.css">
+<script>
+window.__errors = [];
+window.addEventListener('error', function (e) {
+  window.__errors.push((e.message || 'erro') + ' @' + (e.filename || '?') + ':' + (e.lineno || 0));
+});
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1280" height="720"></canvas>
+
+  <div id="hud" class="hidden">
+    <div class="hud-player p1" id="panel1">
+      <div class="badge">P1</div>
+      <div class="info">
+        <div class="pname">VERMELHO</div>
+        <div class="lap">VOLTA <b id="lap1">0</b><span>/<i id="total1">5</i></span></div>
+      </div>
+      <div class="pos" id="pos1">—</div>
+      <div class="speedbar"><i id="spd1"></i></div>
+      <div class="spinflag">GIRO 720°</div>
+    </div>
+
+    <div class="hud-player p2" id="panel2">
+      <div class="badge">P2</div>
+      <div class="info">
+        <div class="pname">AZUL</div>
+        <div class="lap">VOLTA <b id="lap2">0</b><span>/<i id="total2">5</i></span></div>
+      </div>
+      <div class="pos" id="pos2">—</div>
+      <div class="speedbar"><i id="spd2"></i></div>
+      <div class="spinflag">GIRO 720°</div>
+    </div>
+
+    <div id="center-msg"></div>
+    <div id="hint">ESC menu &nbsp;·&nbsp; R reiniciar &nbsp;·&nbsp; M som &nbsp;·&nbsp; F tela cheia</div>
+  </div>
+
+  <div id="menu" class="overlay">
+    <div class="menu-card">
+      <div class="logo">KART<span>EX</span></div>
+      <div class="tagline">2 jogadores · 1 tela · 720° de caos</div>
+
+      <div class="laps-picker">
+        <button id="minus" class="step" aria-label="Menos voltas">−</button>
+        <div class="laps-value"><small>VOLTAS</small><strong id="lapsValue">5</strong></div>
+        <button id="plus" class="step" aria-label="Mais voltas">+</button>
+      </div>
+
+      <button id="startBtn" class="btn primary">INICIAR CORRIDA</button>
+
+      <div class="controls">
+        <div class="ctrl-col c1">
+          <h4><i></i> JOGADOR 1</h4>
+          <div class="keyrow"><kbd>W</kbd><span>Acelerar</span></div>
+          <div class="keyrow"><kbd>S</kbd><span>Frear / ré</span></div>
+          <div class="keyrow"><kbd>A</kbd><kbd>D</kbd><span>Virar</span></div>
+        </div>
+        <div class="ctrl-col c2">
+          <h4><i></i> JOGADOR 2</h4>
+          <div class="keyrow"><kbd>↑</kbd><span>Acelerar</span></div>
+          <div class="keyrow"><kbd>↓</kbd><span>Frear / ré</span></div>
+          <div class="keyrow"><kbd>←</kbd><kbd>→</kbd><span>Virar</span></div>
+        </div>
+      </div>
+
+      <p class="tip">Quem bate na <b>traseira</b> do adversário gira <b>720°</b> e volta ao exato lugar da batida. Use as curvas. Sem dó.</p>
+    </div>
+  </div>
+
+  <div id="result" class="overlay hidden">
+    <div class="result-card">
+      <div class="checker-strip"></div>
+      <div class="result-kicker">BANDEIRA QUADRICULADA</div>
+      <h1 id="winner">JOGADOR<br>VERMELHO<br>VENCEU!</h1>
+      <p id="resultSub">5 voltas completadas</p>
+      <div class="result-buttons">
+        <button id="againBtn" class="btn primary">REVANCHE</button>
+        <button id="menuBtn" class="btn ghost">MENU</button>
+      </div>
+      <div class="result-hint">ESPAÇO para revanche</div>
+    </div>
+  </div>
+
+  <div id="toast" class="hidden"></div>
+  <div id="debug" aria-hidden="true"></div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/track.js"></script>
+<script src="js/kart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
